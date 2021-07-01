@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+论坛_回复页面
+{% endblock %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/publish.css' %}" />
+{% endblock %}
+{% block content %}
+<body>
+
+	<div style="margin-top:55px;"></div>
+	<div id="position" class="auto">
+		<a href="{% url 'bbs:BBSIndexView' %}">诗词论坛</a> &gt; <a {% url 'bbs:reply' %}>{{article.category.name}}</a> &gt;{{article.title}}
+	</div>
+	<div id="publish">
+		<div>回复：由 {{article.user.nick_name}} 发布的  {{article.title}}</div>
+		<form method="post">
+            {% csrf_token %}
+			<textarea name="comment_content" class="content"></textarea>
+			<input class="reply" type="submit" name="submit" value="" />
+			<div style="clear:both;"></div>
+		</form>
+	</div>
+
+</body>
+{% endblock %}

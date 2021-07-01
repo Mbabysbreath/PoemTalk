@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    诗 说-诗词论坛
+{% endblock %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+	<style type="text/css"></style>
+	<script type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+<div class="box auto">
+		<div class="title">
+			跟帖
+		</div>
+		<div class="classList">
+            {% for category in categories %}
+			<div class="childBox new">
+				<h2><a href="{% url 'bbs:artical_list' category.id %}">{{ category.name }}</a> <span>(今日{{category.today}})</span></h2>
+				帖子：{{category.total}}<br />
+			</div>
+            {% endfor %}
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    {#<!--{% block title %}{% endblock %}: 代表了之后的内容可被代替和继承-->#}
+    <title>诗说-挑战诗词</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+</head>
+<body>
+<section class="headerwrap ">
+    <style>
+        a:link {
+            color: #2a2c2e;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #2a2c2e;
+            text-decoration: none;
+        }
+
+        li {
+            color: #777a7c;
+        }
+
+    </style>
+    <header>
+        <div class=" header">
+            <div class="top">
+                <div class="wp">
+
+                    <!--登录后跳转-->
+                    {% if request.user.is_authenticated %}
+                        <div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ request.user.username }}</dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                                <dl>
+                                    <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+                                    <dd>
+                                        <h2>{{ request.user.nick_name }}</h2>
+                                        <p>{{ request.user.username }}</p>
+                                    </dd>
+                                </dl>
+                                <div class="btn">
+                                    <a class="personcenter fl" href="{% url 'users:user_info' %}">进入个人中心</a>
+                                    <a class="fr" href="{% url 'users:user_logout' %}">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div style="float:right ">
+                            <a style="color:white" class="fr registerbtn" href="{% url 'users:user_register' %}">注册</a>
+                            <a style="color:white" class="fr loginbtn" href="{% url 'users:user_login' %}">登录</a>
+                        </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <nav>
+                <div class="nav">
+                    <div class="wp">
+                        <ul>
+                            <li {% if request.path == '/' %} class="active"{% endif %} ><a href="/">首页</a></li>
+                            <li {% if request.path|slice:':6' == '/poem/' %} class="active"{% endif %}><a
+                                    href="{% url 'poem:poem_list' %}">学习诗词</a></li>
+                            <li {% if request.path|slice:':6' == '/poet/' %} class="active"{% endif %}><a
+                                    href="{% url 'poet:poet_list' %}">诗人</a></li>
+                            <li {% if request.path|slice:':7' == '/exams/' %} class="active"{% endif %}><a
+                                    href="{% url 'exams:po_test' %}">测试一下</a></li>
+                            <li {% if request.path|slice:':5' == '/bbs/' %} class="active"{% endif %}><a
+                                    href="{% url 'bbs:BBSIndexView' %}">诗词论坛</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+</section>
+<section>
+
+    <div style="float: left; width: 1200px;" class="row my-5" id="brand-colors">
+        <div>
+            <section>
+                <div>
+                    <div>
+                        <h1 style="text-align: center;padding-bottom: 30px">题库列表</h1>
+                        {% for paper in papers %}
+                            {% if forloop.counter|divisibleby:"2" == 0 %}
+                                <a target="_blank" href='{% url 'exams:paper' paper.id %}'>
+                                    <div class="back1"
+                                         style="background-color: #e83e8c;height:40px;width:800px;padding-top: 10px;color: #f0f0f0;margin:0 auto;text-align: center">{{ paper.name }}</div>
+
+                                </a>
+                                <br/>
+
+                            {% elif forloop.counter|divisibleby:"3" == 0 %}
+                                <a target="_blank" href='{% url 'exams:paper' paper.id %}'>
+                                    <div class="back1"
+                                         style="background-color: #e8843f;height:40px;width:800px;padding-top: 10px;color: #f0f0f0;margin:0 auto;text-align: center">{{ paper.name }}</div>
+                                </a>
+                                <br/>
+                            {% else %}
+                                <a target="_blank" href='{% url 'exams:paper' paper.id %}'>
+                                    <div class="back1"
+                                         style="background-color: #49e843;height:40px;width:800px;padding-top: 10px;color: #f0f0f0;margin:0 auto;text-align: center">{{ paper.name }}</div>
+
+                                </a>
+                                <br/>
+
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/selectUi.js' %}" type='text/javascript'></script>
+<script src="{% static 'js/deco-common.js' %}" type='text/javascript'></script>
+<script type="text/javascript" src="{% static 'js/plugins/laydate/laydate.js' %}"></script>
+<script src="{% static 'js/plugins/layer/layer.js' %}"></script>
+<script src="{% static 'js/plugins/queryCity/js/public.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/plugins/jquery.scrollLoading.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+</body>
+
+
+
+

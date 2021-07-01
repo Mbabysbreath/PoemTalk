@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    首页 - 诗说
+{% endblock %}
+
+{% block content %}
+	<section>
+	</section>
+	<section>
+		<div class="module">
+			<div class="wp">
+				<h1 >诗词学习</h1>
+				<div class="module1 eachmod">
+					<div class="module1_1 left">
+						<img width="228" height="614" src="{% static 'images/study_3.jpg'%}"/>
+						<p class="fisrt_word">粗缯大布裹生涯<br/>腹有诗书气自华</p>
+						<a class="more" href="{% url 'poem:poem_list' %}">查看更多 ></a>
+					</div>
+					<div class="right group_list">
+                        {#   轮播图主体                 #}
+						<div class="module1_2 box">
+							<div class="imgslide2">
+								<ul class="imgs">
+                                    {% for banner in banner_poemtype %}
+                                    <li>
+                                        <a href="{% url 'poem:poem_detail' banner.id %}">
+                                            <img width="470" height="350" src="{{MEDIA_URL}}{{ banner.image }}" />
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+								</ul>
+                            </div>
+                            {#  左右箭头                      #}
+							<div class="unslider-arrow2 prev"></div>
+							<div class="unslider-arrow2 next"></div>
+                        </div>
+                            {% for poemtype in all_poemtype %}
+                            <div class="module1_{{forloop.counter|add:"2"}} box">
+                                <a href="{% url 'poem:poem_detail' poemtype.id %}">
+                                   <img width="233" height="190" src="{{MEDIA_URL}}{{ poemtype.image }}"/>
+                                </a>
+                                <div class="des">
+                                    <a href="{% url 'poem:poem_detail' poemtype.id %}">
+                                        <h2 title="{{ poemtype.name }}">{{ poemtype.name }}</h2>
+                                    </a>
+                                </div>
+                                <div class="bottom">
+                                    <span class="fl" title="诗说">诗 说</span>
+                                    <span class="star fr">{{poemtype.study_num}}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="module greybg">
+			<div class="wp">
+				<h1 style=>诗人</h1>
+				<div class="module3 eachmod">
+					<div class="module3_1 left">
+						<img width="228" height="463" src="{% static 'images/wyb1.jpg'%}"/>
+						<p class="fisrt_word">我愿君子气<br/>散为青松裁</p>
+						<a class="more" href="{% url 'poet:poet_list' %}">查看更多></a>
+					</div>
+					<div class="right">
+						<ul>
+                            {% for poet in all_poet %}
+                                <li class="five"}>
+                                    <a href="{% url 'poet:poet_detail' poet.id %}">
+                                        <div class="company">
+                                            <img width="184" height="100" src="{{MEDIA_URL}}{{ poet.image }}"/>
+                                        </div>
+                                        <p><span class="key" title="{{poet.name}}">{{poet.name}}</span></p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+
+
+<!--crumbs start-->
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+诗词论坛_帖子列表页
+{% endblock %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/list.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.pagination.css' %}" />
+{% endblock %}
+
+{% block content %}
+<body>
+	<div style="margin-top:55px;"></div>
+	<div id="position" class="auto">
+		 <a href="{% url 'bbs:BBSIndexView' %}">诗词论坛</a> &gt; <a href='#'>{{category}}</a>
+	</div>
+	<div id="main" class="auto">
+		<div id="left">
+			<div class="box_wrap">
+				<h3>{{category}}</h3>
+				<div class="num">
+				    今日：<span>{{today}}</span>&nbsp;&nbsp;&nbsp;
+				    总帖：<span>{{total}}</span>
+				</div>
+				<div class="pages_wrap">
+					<a class="btn publish" href="{% url 'bbs:publish' %}"></a>
+					<div style="clear:both;"></div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			<ul class="postsList">
+
+				{% for article in pages %}
+					<li>
+					<div class="smallPic">
+						<a href="#">
+							<img width="45" height="45" src="{{ MEDIA_URL }}{{ article.user.image }}">
+						</a>
+					</div>
+					<div class="subject">
+						<div class="titleWrap">&nbsp;&nbsp;<h2><a href="{% url 'bbs:detail' article.id%}">{{article.title}}</a></h2></div>
+						<p>
+							楼主：{{article.user.nick_name}}&nbsp;{{article.publish_time}}&nbsp;&nbsp;&nbsp;&nbsp;最后回复：{{article.last_comment_time}}
+						</p>
+					</div>
+					<div class="count">
+						<p>
+							回复<br /><span>{{article.comments}}</span>
+						</p>
+						<p>
+							浏览<br /><span>{{article.read_count}}</span>
+						</p>
+					</div>
+					<div style="clear:both;"></div>
+				</li>
+				{% endfor %}
+			</ul>
+             <div class="pageturn">
+            <ul class="pagelist">
+                {% if pages.has_previous %}
+                <li class="long"><a href="?pagenum={{ pages.previous_page_number }}&sort={{ sort }}&keyword={{ keyword }}">上一页</a></li>
+                {% endif %}
+
+                {% for num in pages.paginator.page_range %}
+                <li {% if num == pages.number %}class="active"{% endif %}><a href="?pagenum={{ num }}&sort={{ sort }}&keyword={{ keyword }}">{{ num }}</a></li>
+                {% endfor %}
+
+                {% if pages.has_next %}
+                <li class="long"><a href="?pagenum={{ pages.next_page_number }}&sort={{ sort }}&keyword={{ keyword }}">下一页</a></li>
+                {% endif %}
+            </ul>
+        </div>
+		</div>
+		<div id="right">
+			<div class="classList">
+				<div class="title">版块热门跟帖</div>
+				<ul class="listWrap">
+					<li>
+						<ul>
+                            {% for hot in hot_articles %}
+							<li><h3><a href="{% url 'bbs:detail' hot.id %}">{{hot.title}}</a></h3></li>
+                            {% endfor %}
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+
+</body>
+{% endblock %}
+
+</html>
+<script type="text/javascript">
+    $(function () {
+        $('#pagination').pagination({
+            currentPage:{{page_num}},
+            totalPage: {{ total_page }},
+            callback:function (current) {
+                location.href = '?page=' + current;
+            }
+        })
+    });
+</script>

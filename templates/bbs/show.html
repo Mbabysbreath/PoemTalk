@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    诗词论坛_帖子详情页
+{% endblock %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/show.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.pagination.css' %}" />
+{% endblock %}
+
+{% block content %}
+<body>
+	<div style="margin-top:55px;"></div>
+	<div id="position" class="auto">
+		 <a href={% url 'bbs:BBSIndexView' %}>诗词论坛</a>
+        &gt; <a href={% url 'bbs:artical_list' article.category.id %}>{{article.category}}</a>
+        &gt;{{ article.title }}
+	</div>
+	<div id="main" class="auto">
+		<div class="wrap1">
+			<a class="btn reply" href="{% url 'bbs:reply' %}?article_id={{ article.id }}"></a>
+			<div style="clear:both;"></div>
+		</div>
+		<div class="wrapContent">
+			<div class="left">
+				<div class="face">
+					<a target="_blank" href="">
+						<img style="width: 120px;height: 120px;" src="{{ MEDIA_URL }}{{ article.user.image}}" />
+					</a>
+				</div>
+				<div class="name">
+					<a href="">{{article.user.name}}</a>
+				</div>
+			</div>
+			<div class="right">
+				<div class="title">
+					<h2> {{article.title}}</h2>
+					<span>阅读：{{article.read_count}}&nbsp;|&nbsp;回复：{{article.comments}}</span>
+					<div style="clear:both;"></div>
+				</div>
+				<div class="pubdate">
+					<span class="date">发布于：{{article.publish_time}} </span>
+					<span class="floor" style="color:red;font-size:14px;font-weight:bold;">楼主</span>
+				</div>
+				<div class="content">
+					  {{ article.content }}
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+        {% for comment in pages %}
+        <div class="wrapContent">
+			<div class="left">
+				<div class="face">
+					<a target="_blank" href="">
+						<img style="height: 120px;width: 120px;" src="{{ MEDIA_URL }}{{ comment.comment_man.image }}" />
+					</a>
+				</div>
+				<div class="name">
+					<a href="">{{comment.comment_man.nick_name}}</a>
+				</div>
+			</div>
+			<div class="right">
+
+				<div class="pubdate">
+					<span class="date">回复时间：{{comment.add_time}}</span>
+					<span class="floor">{{ comment.floor }}楼&nbsp;|&nbsp;<a href="#">引用</a></span>
+				</div>
+				<div class="content">
+                    {% if comment.parent_id %}
+					<div class="quote">
+                        <h2>引用 1楼 {{ comment.parent.user.nick_name }} 发表的: </h2>
+                        {{ comment.parent.comment_content }}
+                    </div>
+                    {% endif %}
+                {{ comment.comment_content }}
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+        {% endfor %}
+
+
+		<div class="wrap1">
+				<div class="pages">
+					<div id="pagination" class="page"></div>
+				</div>
+			<a class="btn reply" href="{% url 'bbs:reply' %}?article_id={{ article.id }}"></a>
+			<div style="clear:both;"></div>
+		</div>
+             <div class="pageturn">
+            <ul class="pagelist">
+                {% if pages.has_previous %}
+                <li class="long"><a href="?pagenum={{ pages.previous_page_number }}&sort={{ sort }}&keyword={{ keyword }}">上一页</a></li>
+                {% endif %}
+
+                {% for num in pages.paginator.page_range %}
+                <li {% if num == pages.number %}class="active"{% endif %}><a href="?pagenum={{ num }}&sort={{ sort }}&keyword={{ keyword }}">{{ num }}</a></li>
+                {% endfor %}
+
+                {% if pages.has_next %}
+                <li class="long"><a href="?pagenum={{ pages.next_page_number }}&sort={{ sort }}&keyword={{ keyword }}">下一页</a></li>
+                {% endif %}
+            </ul>
+        </div>
+	</div>
+</body>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#pagination').pagination({
+            currentPage:{{page_num}},
+            totalPage: {{total_page}},
+            callback:function (current) {
+                location.href = '?page=' + current;
+            }
+        })
+    });
+</script>

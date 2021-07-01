@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}测试结果{% endblock %}
+
+{% block custom_bread %}
+{% endblock %}
+{% block content %}
+
+{% if wrong_question_count == 0 %}
+  <section class="bg-hero">
+            <div class="container">
+                <div class="row vh-100">
+                    <div class="col-sm-12 my-auto text-center">
+
+        <div class="text-center" >
+            <div id="mydef">
+
+                 <h2 class="score1">
+                 </h2>
+                 <h2 class="score1">
+                     春风得意马蹄疾，一日看尽长安花</br>
+                     恭喜您，挑战成功！
+                 </h2>
+            </div>
+        </div>
+
+    {% else %}
+        <div id="box1">
+
+         <h1 class="error-question">您的错题是：</h1>
+                </div>
+
+                  {% for wrong_question_now in wrong_question %}
+                    <div id="box1">
+                        {% if wrong_question_now.questionType == 'xz' %}
+                        <from id="{{ wrong_question_now.id }}">
+
+                            <p>{{ forloop.counter }}.({{ "选择" }}) {{ wrong_question_now.content }}正确答案({{ wrong_question_now.answer }}),您的答案({{ wrong_question_now.user_ans }})</p>
+                            <input type="hidden" value="{{ wrong_question_now.id }}">
+                            {% if wrong_question_now.choice_num == 4 %}
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="A"/>{{ wrong_question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="B"/>{{ wrong_question_now.choice_b }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="C"/>{{wrong_question_now.choice_c }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="D"/>{{ wrong_question_now.choice_d }}
+                            </label><br/>
+                            {% endif %}
+                         {% if wrong_question_now.choice_num == 2 %}
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="A"/>{{ wrong_question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="B"/>{{ wrong_question_now.choice_b }}
+                            </label><br/>
+                            {% endif %}
+                         {% if wrong_question_now.choice_num == 3 %}
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="A"/>{{ wrong_question_now.choice_a }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="B"/>{{ wrong_question_now.choice_b }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="C"/>{{wrong_question_now.choice_c }}
+                            </label><br/>
+                            {% endif %}
+                        </from>
+                        {% endif %}
+                        {% if wrong_question_now.questionType == 'judgment' %}
+                        <from id="{{ wrong_question_now.id }}">
+
+                            <p>{{ forloop.counter }}.({{ "判断"  }}) {{ wrong_question_now.content }}正确答案({{ wrong_question_now.answer }}),您的答案({{ wrong_question_now.user_ans }})</p>
+                            <input type="hidden" value="{{ wrong_question_now.id }}">
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="True"/>{{ wrong_question_now.boolt }}
+                            </label><br/>
+                            <label><input name="{{ wrong_question_now.id }}" type="radio"
+                                          value="False"/>{{ wrong_question_now.boolf }}
+                            </label><br/>
+                        </from>
+                        {% endif %}
+                            </div>
+
+                    <hr/>
+                {% endfor %}
+    {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+<!--feature start-->
+	<section>
+   <style>
+        #mydef {
+            text-align: center;
+        }
+
+        .score {
+            font-size: 30px;
+            color: #2a2c2e;
+        }
+  .score1 {
+            font-size: 30px ;
+            color: #edfaff;
+            {#background-image:url({{ MEDIA_URL }}/testapp/charcoal.jpg);#}
+             background-color:#cccccc;
+            width: 100%;
+            height: 200px;
+        }
+        #box1 {
+            width: 600px;
+            margin: 20px auto;
+            {#color: #f0f0f0;#}
+            border-bottom-color: #f0f0f0;
+        }
+
+        #box1 p {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        #box2 p {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+
+
+    </style>
+
+	</section>
+<!--feature end-->
+<!--module1 start-->
+
+{% endblock %}
+
+{% block myjs %}
+    <script type="text/javascript" src="{% static 'js/index.js' %}">
+    window.onbeforeunload = function (e) {
+        console.log("阻止页面刷新事件");
+        return " ";
+    }
+    </script>
+{% endblock %}
+{% block footer%}
+{% endblock %}
+

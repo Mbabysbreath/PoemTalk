@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    诗说-诗词种类详情
+{% endblock %}
+{% block content %}
+<style>
+a:link {
+color: #2a2c2e;
+text-decoration:none;
+}
+a:visited {
+color: #2a2c2e;
+text-decoration:none;
+}
+li{
+    color: #777a7c;
+}
+
+</style>
+    <section>
+	<div class="wp">
+		<div class="crumbs">
+			<ul>
+				<li><a href="/">首页</a>></li>
+                <li><a href="{% url 'poem:poem_list' %}">诗词种类</a>></li>
+				<li>诗词种类详情</li>
+			</ul>
+		</div>
+	</div>
+</section>
+    <section>
+	<div class="wp">
+		<div class="groupPurchase_detail detail">
+			<div class="toppro">
+				<div class="left">
+					<div class="picbox">
+						<div class="tb-booth tb-pic">
+							<img width="440" height="445" src="{{MEDIA_URL}}{{ poem.image }}" class="jqzoom" />
+						</div>
+
+					</div>
+					<div class="des">
+						<h1 title="{{ poem.name }}">{{ poem.name }}</h1>
+						<span class="key">{{ poem.desc }}</span>
+						<div class="prize">
+							<span class="fr">点击次数：{{poem.study_num}}</span>
+                            <span class="fr">诗词数目：{{poem_num.count}}</span>
+						</div>
+                        <br/><br/>
+						<div class="btns">
+                                <div class="buy btn"><a style="color: white" href="{% url 'poem:poem_study' poem.id %}">开始学习</a></div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+    <section>
+	<div class="wp">
+		<div class="list groupPurchase_detail_pro">
+			<div class="left layout">
+				<div class="head">
+					<ul class="tab_header">
+						<li class="active" style="color: #2a2c2e">诗词种类详情</li>
+					</ul>
+				</div>
+				<div class="tab_cont tab_cont1">
+
+					<p >
+                        {{ poem.detail }}
+
+                    </p>
+
+				</div>
+				<div class="tab_cont tab_cont2" >
+					<div class="comment">
+						<div class="comenlist">
+
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

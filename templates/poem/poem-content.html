@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    诗说-诗词信息
+{% endblock %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/common-less.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/learn-less.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mooc.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/common-less.css' %}">
+{% endblock %}
+
+{% block content %}
+<style>
+a:link {
+color: #2a2c2e;
+text-decoration:none;
+}
+a:visited {
+color: #2a2c2e;
+text-decoration:none;
+}
+
+
+</style>
+    <section>
+	<div class="wp">
+		<div class="crumbs">
+			<ul>
+				<li><a  href="/">首页</a>></li>
+                <li ><a  href="{% url 'poem:poem_list' %}">诗词种类</a>></li>
+				<li><a  href="{% url 'poem:poem_detail' poem_type.id %}">诗词详情</a>></li>
+                <li>诗词信息</li>
+			</ul>
+		</div>
+	</div>
+</section>
+<div id="main">
+    <div class="course-infos">
+        <div class="w pr">
+            <div style="height: 15px" class="path">
+            </div>
+            <div class="hd">
+                <h2 class="l">{{ poem.name }}-{{ poem.author }}</h2>
+            </div>
+            <div class="statics clearfix">
+                <div class="static-item">
+                    <span class="meta-value"><strong>{{ poem.study_num }}</strong></span>
+                    <span class="meta">学习人数</span>
+                    <em></em>
+                </div>
+                <div class="static-item">
+                    <span class="meta-value"><strong>{{ poem.click_num }}</strong></span>
+                    <span class="meta">浏览次数</span>
+                    <em></em>
+                </div>
+                <div class="static-item">
+                    <span class="meta-value"><strong>{{ poem.love_num }}</strong></span>
+                    <span class="meta" >收藏人数</span>
+                    <em></em>
+                </div>
+                <div class="static-item">
+                    <div class="middle companyheader">
+                        <div class="btn fr collectionbtn  notlogin" data-favid="22" data-fav-type="1" id="jsLeftBtn">
+                            {% if lovestatus %}取消收藏{% else %}收藏{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="course-info-main clearfix w has-progress">
+        <div class="info-bar clearfix">
+        <div class="content-wrap clearfix">
+            <div class="content">
+                <div class="mod-tab-menu">
+                    <ul class="course-menu clearfix">
+                        <li><a class="ui-tabs-active active" id="learnOn"  href="#">
+                            <span>{{ poem.name }}</span></a></li>
+                        <li><a id="commentOn" class="" href="{% url 'poem:poem_comment' poem.id %}">
+                            <span>评论</span></a></li>
+                    </ul>
+                </div>
+                <div class="mod-chapters">
+                    <div class="chapter chapter-active" >
+                        <ul class="video">
+
+                            <li class="J-media-item studyvideo">
+                                {% if 'audio/' in poem.url %}
+                                <audio style=" cursor:pointer;outline:none; float:left; margin-left:20px; width:450px;"
+                                       src="{{ MEDIA_URL }}{{ poem.url }}"
+                                controls="controls" autoplay controlslist="nodownload" __idm_id__="323683329"></audio>
+                                {% endif %}
+                                {%   if 'http' in poem.url %}
+                                 <audio style=" cursor:pointer;outline:none; float:left; margin-left:20px; width:450px;"
+                                       src="{{poem.url}}"
+                                controls="controls" autoplay controlslist="nodownload" __idm_id__="323683329"></audio>
+                                {% endif %}
+                            <br><br>
+                                {{poem.contents}}
+                                <h3>译文</h3>
+                                <p>
+                                    {{ poem.translation }}
+                                </p>
+                                <h3>注释</h3>
+                                <p>
+                                    {{ poem.note }}
+                                </p>
+                            </li>
+                        </ul>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block myjs %}
+    <script>
+        $(function () {
+            $('#jsLeftBtn').click(function () {
+                var loveid = {{ poem.id }};
+                var lovetype = 2;
+                $.ajax({
+                    type:'GET',
+                    url:'{% url 'operations:user_love' %}',
+                    data:{
+                        lovetype:lovetype,
+                        loveid:loveid
+                    },
+                    success:function (callback) {
+                        if(callback.status == 'ok'){
+                            $('#jsLeftBtn').text(callback.msg)
+                            {#让页面重新刷新加载#}
+                            window.location.reload()
+                        }else {
+                            alert(callback.msg)
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+{% endblock %}
+{% block footer %}
+{% endblock %}

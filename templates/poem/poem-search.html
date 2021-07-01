@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    诗说-诗词信息
+{% endblock %}
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/common-less.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/learn-less.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mooc.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/common-less.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section>
+	<div class="wp">
+		<div class="crumbs">
+			<ul>
+				<li><a href="/">首页</a>></li>
+                <li>诗词信息</li>
+			</ul>
+		</div>
+	</div>
+</section>
+    <div id="main">
+    <div class="course-infos">
+        <div class="w pr">
+            <div style="height: 15px" class="path">
+            </div>
+            <div class="hd">
+                <h2 class="l">关键词：{{ keyword }}</h2>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="course-info-main clearfix w has-progress">
+
+        <div class="info-bar clearfix">
+        <div class="content-wrap clearfix">
+            <div class="content">
+                <div class="mod-tab-menu">
+                    <ul class="course-menu clearfix">
+                        <li><a class="ui-tabs-active active" id="learnOn"  href="poem-study.html">
+                            <span>搜索结果：</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="mod-chapters">
+                {{ no_result }}
+                    {% for poemstudy in pages %}
+
+                    <div class="chapter chapter-active" >
+                        <h3>
+                            <strong><i class="state-expand"></i>{{ poemstudy.name }}</strong>
+                        </h3>
+                        <ul class="video">
+{#                            {% for poemdetail in poemstudy.poem_set.all  %}#}
+                            <li>
+                                <a target="_blank" href='{% url 'poem:poem_content' poemstudy.id %}' class="J-media-item studyvideo">{{poemstudy.name}}({{ poemstudy.study_num }})
+                                    <i class="study-state"></i>
+                                </a>
+                            </li>
+{#                            {% endfor %}#}
+                        </ul>
+
+                     </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+          <div class="pageturn">
+            <ul class="pagelist">
+                {% if pages.has_previous %}
+                <li class="long"><a href="?pagenum={{ pages.previous_page_number }}&sort={{ sort }}&keyword={{ keyword }}">上一页</a></li>
+                {% endif %}
+
+                {% for num in pages.paginator.page_range %}
+                    {% if num <= 3  %}
+                <li {% if num == pages.number %}class="active"{% endif %}><a href="?pagenum={{ num }}&sort={{ sort }}&keyword={{ keyword }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if pages.has_next %}
+                    <li {% if num == pages.number %}class="active"{% endif %}><a href="?pagenum={{ num }}&sort={{ sort }}&keyword={{ keyword }}">...</a></li>
+                <li class="long"><a href="?pagenum={{ pages.next_page_number }}&sort={{ sort }}&keyword={{ keyword }}">下一页</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+</div>
+{% endblock %}
+
+
+
+

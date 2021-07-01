@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>诗说-测试页面</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/unslider.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/login.js' %}" type="text/javascript"></script>
+</head>
+<body>
+<section class="headerwrap1 ">
+    <header>
+        <div class="header1">
+            <div class="top">
+                <div class="wp">
+                    <!--登录后跳转-->
+                    {% if request.user.is_authenticated %}
+                        <div class="personal">
+                            <dl class="user fr">
+                                <dd>{{ request.user.username }}</dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ request.user.image }}"/></dt>
+                            </dl>
+                        </div>
+                    {% else %}
+                        <div style="float: right">
+                            <a style="color:white" class="fr registerbtn" href="{% url 'users:user_register' %}">注册</a>
+                            <a style="color:white" class="fr loginbtn" href="{% url 'users:user_login' %}">登录</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+</section>
+<section>
+    <div id="main">
+        <div class="course-infos">
+            <div class="w pr">
+                <div style="height: 15px" class="path">
+                </div>
+                <div class="hd">
+                    {#                <h2 class="l">考试页面</h2>#}
+                </div>
+                <div class="statics clearfix">
+                    <div class="static-item">
+                        <span class="meta-value"><strong>测试范围：{{ papers_list.name }}</strong></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="course-info-main clearfix w has-progress">
+        <div class="info-bar clearfix">
+            <div class="content-wrap clearfix">
+                <div class="content">
+                    <div class="mod-chapters">
+                        <div class="chapter chapter-active">
+                            <div class="main">
+                                <!--nr start-->
+                                <div id="box-question">
+                                    <div class="nr_left">
+                                        <div class="test">
+                                            <form action="" method="post" id="form1">{% csrf_token %}
+
+                                                {% if single_choice_score != 0 %}
+                                                    <div class="test_content">
+                                                        <div class="test_content_title">
+                                                            <h3 class="error-question">
+                                                                单选题,共{{ papers_list.single_choice_num }}题，合计{{ single_choice_score }}分</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="test_content_nr">
+                                                        <ul>
+                                                            {% for question_now in question %}
+                                                                {% if question_now.questionType == 'xz' %}
+                                                                    <li id="{{ question_now.id }}">
+                                                                        <div class="test_content_nr_tt">
+                                                                            <i>{{ forloop.counter }}.</i><font>{{ question_now.content }}</font>
+                                                                        </div>
+                                                                        <div class="test_content_nr_main">
+                                                                            {% if question_now.choice_num == 4 %}
+                                                                                <ul>
+
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_1"
+                                                                                               value="A"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_1">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_a }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_2"
+                                                                                               value="B"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_2">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_b }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_3"
+                                                                                               value="C"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_3">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_c }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_4"
+                                                                                               value="D"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_4">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_d }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            {% endif %}
+                                                                            {% if question_now.choice_num == 2 %}
+                                                                                <ul>
+
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_1"
+                                                                                               value="A"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_1">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_a }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_2"
+                                                                                               value="B"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_2">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_b }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            {% endif %}
+                                                                            {% if question_now.choice_num == 3 %}
+                                                                                <ul>
+
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_1"
+                                                                                               value="A"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_1">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_a }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_2"
+                                                                                               value="B"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_2">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_b }}</p>
+                                                                                        </label>
+                                                                                    </li>
+                                                                                    <li class="option">
+                                                                                        <input type="radio"
+                                                                                               class="radioOrCheck"
+                                                                                               name="{{ question_now.id }}"
+                                                                                               id="{{ question_now.id }}_option_3"
+                                                                                               value="C"
+                                                                                        />
+                                                                                        <label for="{{ question_now.id }}_option_3">
+                                                                                            <p class="ue"
+                                                                                               style="display: inline;">
+                                                                                                {{ question_now.choice_c }}</p>
+                                                                                        </label>
+                                                                                    </li>
+
+                                                                                </ul>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+
+                                                {% endif %}
+
+                                                {% if judgment_score != 0 %}
+                                                    <div class="">
+                                                        <div class="test_content_title">
+                                                            <h3 class="error-question">
+                                                                判断题,共{{ papers_list.judgment }}题，合计{{ judgment_score }}分</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="test_content_nr">
+                                                        <ul>
+                                                            {% for question_now in question %}
+                                                                {% if question_now.questionType == 'judgment' %}
+                                                                    <li id="{{ question_now.id }}">
+                                                                        <div class="test_content_nr_tt">
+                                                                            <i>{{ forloop.counter }}.</i><font>{{ question_now.content }}</font>
+                                                                        </div>
+                                                                        <div class="test_content_nr_main">
+                                                                            <ul>
+                                                                                <li class="option">
+                                                                                    <input type="radio"
+                                                                                           class="radioOrCheck"
+                                                                                           name="{{ question_now.id }}"
+                                                                                           id="{{ question_now.id }}_option_1"
+                                                                                           value="True"
+                                                                                    />
+                                                                                    <label for="{{ question_now.id }}_option_1">
+
+                                                                                        <p class="ue"
+                                                                                           style="display: inline;">{{ question_now.boolt }}</p>
+                                                                                    </label>
+                                                                                </li>
+
+                                                                                <li class="option">
+                                                                                    <input type="radio"
+                                                                                           class="radioOrCheck"
+                                                                                           name="{{ question_now.id }}"
+                                                                                           id="{{ question_now.id }}_option_2"
+                                                                                           value="False"
+                                                                                    />
+                                                                                    <label for="{{ question_now.id }}_option_2">
+                                                                                        <p class="ue"
+                                                                                           style="display: inline;">{{ question_now.boolf }}</p>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </li>
+                                                                    {#                                        </from>#}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                {% endif %}
+                                                <div class="test_title">
+                                                    <button type="button" class="btn btn-outline-primary"
+                                                            onclick="submitForm()">交卷
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!--nr end-->
+                                <div class="foot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    function submitForm() {
+        document.getElementById("form1").submit();
+    }
+</script>
+<script type="text/javascript">
+    //防止页面后退
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+    {#window.onbeforeunload = function (e) {#}
+    {#    console.log("阻止页面刷新事件");#}
+    {#    return " ";}#}
+</script>
+
+</body>

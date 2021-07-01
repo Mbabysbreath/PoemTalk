@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}
+    诗说-诗词种类
+{% endblock %}
+{% block content %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="/">首页</a>></li>
+                <li>学习诗词</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+	<div class="wp">
+		<div class="list" style="margin-top:0;">
+			<div class="left layout">
+				<div class="head">
+					<ul class="tab_header">
+						<li {% if sort == '' %}class="active"{% endif %}><a href="?sort=">最新 </a></li>
+						<li  {% if sort == 'study_num' %}class="active"{% endif %}><a href="?sort=study_num">学习人数</a></li>
+
+					</ul>
+
+				</div>
+                <div id="inWindow">
+                    <div class="tab_cont " id="content">
+					<div class="group_list">
+                    <!-- 循环不同种类的诗词-->
+                        {% for poem in pages %}
+                            <div class="box">
+                                <a href="{% url 'poem:poem_detail' poem.id %}">
+                                    <img width="280" height="350" class="scrollLoading" src="{{MEDIA_URL}}{{ poem.image }}"/>
+                                </a>
+                                <div class="des">
+                                    <a href="{% url 'poem:poem_detail' poem.id %}">
+                                        <h2>{{poem.name}}</h2>
+                                    </a>
+                                    <span class="fr">点击次数：{{ poem.study_num }}&nbsp;&nbsp;</span>
+                                </div>
+                                <div class="bottom">
+
+                                </div>
+                            </div>
+                        {% endfor %}
+					</div>
+         <div class="pageturn">
+            <ul class="pagelist">
+                {% if pages.has_previous %}
+                <li class="long"><a href="?pagenum={{ pages.previous_page_number }}&sort={{ sort }}&keyword={{ keyword }}">上一页</a></li>
+                {% endif %}
+
+                {% for num in pages.paginator.page_range %}
+                <li {% if num == pages.number %}class="active"{% endif %}><a href="?pagenum={{ num }}&sort={{ sort }}&keyword={{ keyword }}">{{ num }}</a></li>
+                {% endfor %}
+
+                {% if pages.has_next %}
+                <li class="long"><a href="?pagenum={{ pages.next_page_number }}&sort={{ sort }}&keyword={{ keyword }}">下一页</a></li>
+                {% endif %}
+            </ul>
+        </div>
+				</div>
+                </div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+{% block footer %}{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}诗说-诗词挑战{% endblock %}
+
+{% block custom_bread %}
+{% endblock %}
+
+{% block content %}
+
+<!--banner end-->
+<!--feature start-->
+	<section>
+		<div class="wp">
+			<ul class="feature">
+				<li class="feature1">
+					<img href="{% url 'exams:paperlist' %}" class="pic" src="{% static 'images/diary-edit.png' %}"/>
+					<p class="center"><a href="{% url 'exams:paperlist' %}" style="color: #2a2c2e">开始考试</a></p>
+				</li>
+
+				<li class="feature3">
+					<img  href="{% url 'operations:history' %}" class="pic" src="{% static 'images/time.png' %}"/>
+					<p class="center" ><a href="{% url 'operations:history' %}" style="color: #2a2c2e">历史成绩</a></p>
+				</li>
+
+			</ul>
+		</div>
+	</section>
+<!--feature end-->
+<!--module1 start-->
+
+{% endblock %}
+{% block custom_js %}
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+

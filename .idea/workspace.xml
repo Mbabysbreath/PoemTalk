@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="63b4f91f-f2f6-4310-853e-22dce1456136" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shishuo@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shishuo@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="shishuo@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="shishuo: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1nCuGcPHF0cOO9AxK1PZ88fQ0II" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/css" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\codeZM\PoemTalk\static\css" />
+      <recent name="D:\codeZM\PoemTalk\apps" />
+      <recent name="D:\codeZM\PoemTalk\static\media" />
+      <recent name="D:\codeZM\PoemTalk\templates\bbs" />
+      <recent name="D:\codeZM\PoemTalk\apps\bbs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\codeZM\PoemTalk\apps" />
+      <recent name="D:\codeZM\PoemTalk\apps\users" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django server.PoemTalk">
+    <configuration name="baiduai" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PoemTalk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/baiduai.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="poet" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PoemTalk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools/poet.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PoemTalk" type="Python.DjangoServer" factoryName="Django server">
+      <module name="PoemTalk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="PoemTalk.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.poet" />
+        <item itemvalue="Python.baiduai" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="63b4f91f-f2f6-4310-853e-22dce1456136" name="Default Changelist" comment="" />
+      <created>1610906298858</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610906298858</updated>
+      <workItem from="1610906364281" duration="118000" />
+      <workItem from="1610970818077" duration="50433000" />
+      <workItem from="1611843533591" duration="4652000" />
+      <workItem from="1611913892355" duration="24635000" />
+      <workItem from="1612077546355" duration="4129000" />
+      <workItem from="1612087314993" duration="4970000" />
+      <workItem from="1612092568784" duration="9635000" />
+      <workItem from="1612187938686" duration="438000" />
+      <workItem from="1612188398633" duration="7130000" />
+      <workItem from="1612243183771" duration="38965000" />
+      <workItem from="1612601483416" duration="6727000" />
+      <workItem from="1612663672686" duration="15463000" />
+      <workItem from="1612770619205" duration="39307000" />
+      <workItem from="1613144347357" duration="5851000" />
+      <workItem from="1613376104977" duration="6525000" />
+      <workItem from="1613481689586" duration="4198000" />
+      <workItem from="1613556667858" duration="7578000" />
+      <workItem from="1613649195465" duration="32365000" />
+      <workItem from="1613976632249" duration="11176000" />
+      <workItem from="1613996469374" duration="7939000" />
+      <workItem from="1614075041890" duration="46686000" />
+      <workItem from="1614229732419" duration="46769000" />
+      <workItem from="1614410996801" duration="2635000" />
+      <workItem from="1614496807378" duration="47412000" />
+      <workItem from="1614840779880" duration="2845000" />
+      <workItem from="1615036270170" duration="2627000" />
+      <workItem from="1615296839774" duration="411000" />
+      <workItem from="1615901533569" duration="719000" />
+      <workItem from="1616151520916" duration="46560000" />
+      <workItem from="1616480744117" duration="1913000" />
+      <workItem from="1616485472767" duration="22487000" />
+      <workItem from="1616661661253" duration="11232000" />
+      <workItem from="1616686583509" duration="3437000" />
+      <workItem from="1616726575880" duration="38614000" />
+      <workItem from="1617162040773" duration="22448000" />
+      <workItem from="1617240665437" duration="18013000" />
+      <workItem from="1617678091983" duration="3096000" />
+      <workItem from="1617710841572" duration="722000" />
+      <workItem from="1617765739778" duration="1537000" />
+      <workItem from="1618192870294" duration="599000" />
+      <workItem from="1618209343856" duration="16000" />
+      <workItem from="1618322955887" duration="6522000" />
+      <workItem from="1618408575754" duration="1392000" />
+      <workItem from="1618713629411" duration="8726000" />
+      <workItem from="1619230754176" duration="10094000" />
+      <workItem from="1619402437867" duration="15649000" />
+      <workItem from="1619488438687" duration="9574000" />
+      <workItem from="1619772987922" duration="15526000" />
+      <workItem from="1620095242966" duration="47326000" />
+      <workItem from="1620629238900" duration="4167000" />
+      <workItem from="1620723489230" duration="33370000" />
+      <workItem from="1621500764402" duration="1665000" />
+      <workItem from="1621504030404" duration="73000" />
+      <workItem from="1621515778923" duration="653000" />
+      <workItem from="1621600326359" duration="131000" />
+      <workItem from="1621848081486" duration="8950000" />
+      <workItem from="1622381407880" duration="767000" />
+      <workItem from="1622453004291" duration="3773000" />
+      <workItem from="1622708139772" duration="5691000" />
+      <workItem from="1622733381296" duration="109000" />
+      <workItem from="1622733553909" duration="1265000" />
+      <workItem from="1622735439414" duration="81000" />
+      <workItem from="1622735762421" duration="711000" />
+      <workItem from="1622888327419" duration="5270000" />
+      <workItem from="1623316729748" duration="3773000" />
+      <workItem from="1623483246651" duration="107603000" />
+      <workItem from="1623918024778" duration="439000" />
+      <workItem from="1623919507407" duration="1164000" />
+      <workItem from="1624265287690" duration="3430000" />
+      <workItem from="1624957365380" duration="320000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="34" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617096217159">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="233" y="34" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1280.689@0.31.1280.689" timestamp="1617096217159" />
+    <state x="600" y="185" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1616578341413">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="600" y="185" key="#com.intellij.fileTypes.FileTypeChooser/0.31.1280.689@0.31.1280.689" timestamp="1616578341413" />
+    <state x="381" y="210" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1619402557657">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="381" y="210" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/0.31.1280.689@0.31.1280.689" timestamp="1619402557657" />
+    <state x="0" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1623762243124">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="0" y="30" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.31.1280.689@0.31.1280.689" timestamp="1623762243124" />
+    <state x="371" y="121" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1623575051504">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="371" y="121" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.31.1280.689@0.31.1280.689" timestamp="1623575051504" />
+    <state x="421" y="133" key="FileChooserDialogImpl" timestamp="1619402556114">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="421" y="133" key="FileChooserDialogImpl/0.31.1280.689@0.31.1280.689" timestamp="1619402556114" />
+    <state width="1237" height="299" key="GridCell.Tab.0.bottom" timestamp="1624957687068">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state width="1237" height="299" key="GridCell.Tab.0.bottom/0.31.1280.689@0.31.1280.689" timestamp="1624957687068" />
+    <state width="1237" height="299" key="GridCell.Tab.0.center" timestamp="1624957687067">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state width="1237" height="299" key="GridCell.Tab.0.center/0.31.1280.689@0.31.1280.689" timestamp="1624957687067" />
+    <state width="1237" height="299" key="GridCell.Tab.0.left" timestamp="1624957687066">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state width="1237" height="299" key="GridCell.Tab.0.left/0.31.1280.689@0.31.1280.689" timestamp="1624957687066" />
+    <state width="1237" height="299" key="GridCell.Tab.0.right" timestamp="1624957687067">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state width="1237" height="299" key="GridCell.Tab.0.right/0.31.1280.689@0.31.1280.689" timestamp="1624957687067" />
+    <state width="228" height="499" key="HiddenNamespacesPopup" timestamp="1617096225433">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state width="228" height="499" key="HiddenNamespacesPopup/0.31.1280.689@0.31.1280.689" timestamp="1617096225433" />
+    <state x="25" y="31" key="SettingsEditor" timestamp="1623757026808">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="25" y="31" key="SettingsEditor/0.31.1280.689@0.31.1280.689" timestamp="1623757026808" />
+    <state x="467" y="106" width="813" height="614" key="find.popup" timestamp="1623772873650">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="467" y="106" width="813" height="614" key="find.popup/0.31.1280.689@0.31.1280.689" timestamp="1623772873650" />
+    <state x="-15" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1623804432199">
+      <screen x="0" y="31" width="1280" height="689" />
+    </state>
+    <state x="-15" y="41" width="672" height="678" key="search.everywhere.popup/0.31.1280.689@0.31.1280.689" timestamp="1623804432199" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PoemTalk/wsgi.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tools/baiduai.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/users/views.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tools/send_mail_tool.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tools/poem.py</url>
+          <line>113</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="django-line">
+          <url>file://$PROJECT_DIR$/templates/poet/poet-detail.html</url>
+          <line>78</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PoemTalk$baiduai.coverage" NAME="baiduai Coverage Results" MODIFIED="1616590052706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/PoemTalk$poet.coverage" NAME="poet Coverage Results" MODIFIED="1622907111448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+  </component>
+</project>

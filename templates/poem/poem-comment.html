@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    诗词评论 - 诗说
+{% endblock %}
+
+{% block mycss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/learn-less.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/course-comment.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/common-less.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/poemtalk/course/common-less.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mooc.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <style>
+        a:link {
+            color: #2a2c2e;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #2a2c2e;
+            text-decoration: none;
+        }
+
+        li {
+            color:#777a7c;
+        }
+
+    </style>
+    <section>
+        <div class="wp">
+            <div class="crumbs">
+                <ul>
+                    <li><a href="/">首页</a>></li>
+                    <li><a href="{% url 'poem:poem_list' %}">诗词种类</a>></li>
+                    <li><a href="{% url 'poem:poem_detail' poem.id %}">诗词种类详情</a>></li>
+                    <li>诗词评论</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div id="main">
+
+        <div class="course-infos">
+            <div class="w pr">
+                <div style="height: 15px" class="path">
+                </div>
+                <div class="hd">
+                    <h2 class="l">{{ poem.name }}</h2>
+                </div>
+                <div class="statics clearfix">
+                    <div class="static-item">
+                        <span class="meta-value"><strong>{{ poem.study_num }}</strong></span>
+                        <span class="meta">学习人数</span>
+                        <em></em>
+                    </div>
+                    <div class="static-item">
+                        <span class="meta-value"><strong>{{ poem.love_num }}</strong></span>
+                        <span class="meta">收藏人数</span>
+                        <em></em>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="course-info-main clearfix w has-progress">
+
+            <div class="info-bar clearfix">
+                <div class="content-wrap clearfix">
+                    <div class="content">
+                        <div class="mod-tab-menu">
+                            <ul class="course-menu clearfix">
+                                <li><a class="ui-tabs-active " id="learnOn"
+                                       href="{% url 'poem:poem_content' poem.id %}"><span>内容</span></a></li>
+                                <li><a id="commentOn" class="active" href="{% url 'poem:poem_comment' poem.id %}"><span>评论</span></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--发布评论-->
+                        <div id="js-pub-container" class="issques clearfix js-form">
+                            <div class="wgt-ipt-wrap pub-editor-wrap " id="js-pl-input-fake">
+                                <textarea id="js-pl-textarea" class="" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！"></textarea>
+                            </div>
+                            <input type="button" id="js-pl-submit" class="pub-btn" data-cid="452" value="发表评论">
+                            <p class="global-errortip js-global-error"></p>
+                        </div>
+                        <div id="course_note">
+                            <ul class="mod-post" id="comment-list">
+                                {% for comment in all_comments %}
+                                    <li class="post-row">
+                                        <div class="media">
+                                            <span target="_blank"><img
+                                                    src='{{ MEDIA_URL }}{{ comment.comment_man.image }}' width='40'
+                                                    height='40'/></span>
+                                        </div>
+                                        <div class="bd">
+                                            <div class="tit">
+                                                <span target="_blank">{{ comment.comment_man.nick_name }}</span>
+                                            </div>
+                                            <p class="cnt">{{ comment.comment_content }}</p>
+                                            <div class="footer clearfix">
+                                                <span title="创建时间" class="l timeago">时间：{{ comment.add_time }}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block myjs %}
+    <script>
+        $(function () {
+            $('#js-pl-submit').click(function () {
+                var poem = {{ poem.id }};
+                var content = $('#js-pl-textarea').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url 'operations:user_comment' %}',
+                    data: {
+                        poem: poem,
+                        content: content,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (callback) {
+                        if (callback) {
+                            {#console.log(callback)#}
+                            window.location.reload();
+                        } else {
+                            alert(callback.msg);
+                        }
+                    }
+
+                })
+            })
+        })
+    </script>
+{% endblock %}
+

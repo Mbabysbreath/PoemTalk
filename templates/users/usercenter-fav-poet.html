@@ -1,0 +1,72 @@
+{% extends 'users/usercenter-base.html' %}
+{% load staticfiles %}
+{% block title %}我的收藏- 诗人{% endblock %}
+{% block breach %}我的收藏{% endblock %}
+{% block right %}
+<div class="right" >
+            <div class="personal_des Releasecont">
+                <div class="head">
+                    <h1>我的收藏</h1>
+                </div>
+            </div>
+            <div class="personal_des permessage">
+                <div class="head">
+                    <ul class="tab_header messagehead">
+                        <li class="active"><a href="{% url 'users:user_lovepoet' %}">收藏诗人 </a></li>
+                        <li><a href="{% url 'users:user_lovepoem' %}">收藏诗词</a></li>
+                    </ul>
+
+                </div>
+                <div class="companycenter">
+                    <div class="group_list brief">
+                    {{ no_poet }}
+                        {% for poet in poet_list %}
+                        <div class="module1_5 box">
+                            <a href="{% url 'poet:poet_detail' poet.id %}">
+                                <img width="214" height="190" src="{{MEDIA_URL}}{{ poet.image }}"/>
+                            </a>
+                            <div class="des">
+                                <a href="{% url 'poet:poet_detail' poet.id %}"><h2>{{poet.name}}</h2></a>
+                                <span class="fr">所属朝代：{{poet.address}}</span>
+                            </div>
+                            <div class="bottom">
+                                <span class="fl">诗说-诗人</span>
+                                <span class="delete-group fr jsDeleteFav_course" data-favid="{{poet.id}}"></span>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block user %}{% endblock %}
+{% block myjs1 %}
+    <script>
+    $(function () {
+        $('.delete-group').click(function () {
+            var loveid = $(this).attr('data-favid');
+            var lovetype=3;
+            var obj = $(this);
+            $.ajax({
+                type:'GET',
+                url:'{% url 'operations:user_deletelove' %}',
+                data:{
+                    loveid:loveid,
+                    lovetype:lovetype
+                },
+                success:function (callback) {
+                    if(callback.status === 'ok'){
+                        obj.parents('.module1_5').remove()
+                        {#alert(callback.msg)#}
+                    }else{
+                        alert(callback.msg)
+                    }
+                }
+            })
+        })
+    })
+    </script>
+{% endblock %}
